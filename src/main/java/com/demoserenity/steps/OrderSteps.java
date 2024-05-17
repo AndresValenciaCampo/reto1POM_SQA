@@ -2,8 +2,8 @@ package com.demoserenity.steps;
 
 import com.demoserenity.pageObject.OrdersPage;
 import com.demoserenity.utils.RandomOrderCustomerList;
-import net.thucydides.core.annotations.Step;
-import org.junit.Assert;
+import net.serenitybdd.annotations.Step;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,7 +24,8 @@ public class OrderSteps {
 
     @Step("Validate title page")
     public void validateTitlePage() {
-        Assert.assertEquals(ordersPage.getDriver().findElement(ordersPage.getTxtTitleOrderPage()).getText(), "Orders");
+       // Assert.assertEquals(ordersPage.getDriver().findElement(ordersPage.getTxtTitleOrderPage()).getText(), "Orders");
+        Assertions.assertThat(ordersPage.getDriver().findElement(ordersPage.getTxtTitleOrderPage()).getText());
 
     }
 

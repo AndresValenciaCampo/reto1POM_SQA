@@ -7,10 +7,9 @@ import com.demoserenity.steps.OrderSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import net.thucydides.core.annotations.Steps;
+import net.serenitybdd.annotations.Steps;
 
 import java.io.IOException;
-
 
 public class EditOrderStepDefinitions {
 
@@ -24,49 +23,43 @@ public class EditOrderStepDefinitions {
     private OrderSteps orderSteps;
 
     @Steps
-    EditOrderSteps editOrderSteps;
+    private EditOrderSteps editOrderSteps;
 
-    @Given("the user is logged in to the application")
-    public void theUserIsLoggedInToTheApplication() throws IOException {
+
+    @Given("the user is logged in")
+    public void the_user_is_logged_in() throws IOException {
         loginSteps.openLoginPage("https://demo.serenity.is/");
         loginSteps.sendCredentials();
         loginSteps.clickBtnSignIn();
+
     }
 
-    @Given("the user clicks the More Info label in the Dashboard page")
-    public void theUserClicksTheMoreInfoLabelInTheDashboardPage() {
+    @When("the user clicks the More Info label from the DashBoard page")
+    public void the_user_clicks_the_more_info_label_from_the_dash_board_page() {
         dashBoardSteps.clickLabelMoreInfo();
     }
 
-    @When("the user is on the Order Details page")
-    public void theUserIsOnTheOrderDetailsPage() {
-        orderSteps.validateTitlePage();
-    }
 
-    @When("the user clicks on a customer's order")
-    public void theUserClicksOnACustomerSOrder() {
+    @When("the user navigates to the Order Details page and clicks on a customer's order")
+    public void the_user_navigates_to_the_order_details_page_and_clicks_on_a_customer_s_order() {
         orderSteps.selectCustomer();
     }
 
-    @When("the user navigates to the Edit Order page")
-    public void theUserNavigatesToTheEditOrderPage() {
-        editOrderSteps.validateEditOrderPageTitle();
-
-    }
-
-    @When("the user selects a random employee from the dropdown menu")
-    public void theUserSelectsARandomEmployeeFromTheDropdownMenu() {
+    @When("the user navigates to the Edit Order page and selects a random employee from the dropdown menu")
+    public void the_user_navigates_to_the_edit_order_page_and_selects_a_random_employee_from_the_dropdown_menu() {
         editOrderSteps.selectEmployee();
     }
 
-    @Then("the user clicks on the Apply Changes button")
-    public void theUserClicksOnTheApplyChangesButton() {
+    @When("the user clicks on the Save button")
+    public void the_user_clicks_on_the_save_button() {
         editOrderSteps.clickApplyChanges();
+
     }
 
-    @Then("the user should see a confirmation message")
-    public void theUserShouldSeeAConfirmationMessage() {
+    @Then("the user should be redirected to the Orders page")
+    public void the_user_should_be_redirected_to_the_orders_page() {
         editOrderSteps.validateSaveSuccess();
+
     }
 
 

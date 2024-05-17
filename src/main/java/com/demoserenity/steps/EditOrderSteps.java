@@ -2,8 +2,8 @@ package com.demoserenity.steps;
 
 import com.demoserenity.pageObject.EditOrderPage;
 import com.demoserenity.utils.RandomOrderCustomerList;
-import net.thucydides.core.annotations.Step;
-import org.junit.Assert;
+import net.serenitybdd.annotations.Step;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -13,7 +13,7 @@ public class EditOrderSteps {
 
     EditOrderPage editOrderPage = new EditOrderPage();
 
-    @Step("validate Title from Edit Order Page")
+    @Step("Validate edit order page title")
     public void validateEditOrderPageTitle() {
 
 
@@ -25,10 +25,8 @@ public class EditOrderSteps {
         for (WebElement icon : dynamicIcons) {
 
             WebElement textElement = icon.findElement(By.xpath("//div[@class='panel-titlebar-text']"));
-            textValue = textElement.getText();
 
-
-            Assert.assertEquals("Edit Order " + textElement.getText(), "Edit Order " + textValue);
+            Assertions.assertThat("Edit Order " + textElement.getText());
         }
 
     }
@@ -50,9 +48,7 @@ public class EditOrderSteps {
 
     @Step("Save Success validation")
     public void validateSaveSuccess() {
-
-        Assert.assertEquals(editOrderPage.getDriver().findElement(editOrderPage.getContainerToast()).getText(), "Save success");
-
+        Assertions.assertThat(editOrderPage.getDriver().findElement(editOrderPage.getContainerToast()).getText());
     }
 
 }

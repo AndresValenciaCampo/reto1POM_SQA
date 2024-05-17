@@ -1,41 +1,62 @@
+// Configuración del classpath para las tareas de Serenity
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath "net.serenity-bdd:serenity-single-page-report:3.3.0"
-        classpath "net.serenity-bdd:serenity-gradle-plugin:3.4.2"
+      //  classpath "net.serenity-bdd:serenity-gradle-plugin:3.3.0"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:4.0.30"
+        classpath "net.serenity-bdd:serenity-single-page-report:4.0.30"
     }
 }
+
 plugins {
-    id "net.serenity-bdd.serenity-gradle-plugin" version "3.3.0"
     id 'java'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '3.3.0'
 }
-defaultTasks 'clear', 'test', 'aggregate'
+
+repositories {
+    mavenCentral()
+}
+
+// Configuración de las tareas principales
+defaultTasks 'clearHistory', 'clearReports', 'test', 'aggregate'
+
+// Configuración del proyecto
 group ''
 version '1.0-SNAPSHOT'
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-repositories {
-    mavenCentral()
-}
+
 dependencies {
-    implementation 'net.serenity-bdd:serenity-junit5:3.3.0'
-    implementation 'net.serenity-bdd:serenity-cucumber:3.6.0'
-    implementation 'net.serenity-bdd:serenity-core:3.6.0'
-    implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
-    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
-    implementation 'org.slf4j:slf4j-simple:2.0.0'
+    // Dependencias para pruebas con Cucumber y Serenity
+    testImplementation 'io.cucumber:cucumber-junit:7.3.1'
+    testImplementation 'net.serenity-bdd:serenity-junit5:4.0.30'
+    testImplementation 'net.serenity-bdd:serenity-cucumber:4.0.30'
+
+    // Dependencias adicionales
+    implementation 'net.serenity-bdd:serenity-core:4.0.30'
+    implementation 'org.apache.poi:poi:3.17'
+    implementation 'org.apache.poi:poi-ooxml:3.17'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.0-alpha7'
 }
+
+// Configuración de la tarea de pruebas
 test {
     useJUnitPlatform()
 }
+
+// Configuración de Serenity
 serenity {
     testRoot = ""
     requirementsBaseDir = ["src/test/resources/features/"]
     reports = ["single-page-html"]
 }
+
+// Configuración para continuar la ejecución en caso de fallos
 gradle.startParameter.continueOnFailure = true
+
+// Configuración de la tarea de pruebas finalizada por 'aggregate'
 test.finalizedBy(aggregate)

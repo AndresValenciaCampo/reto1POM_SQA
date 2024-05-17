@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public class DashBoardPage extends PageObject {
 
     By txtTitleMainPage = By.xpath("//*[@class='content-header']/h1");
-    By lblMoreInfo = By.xpath("//main/section/div[1]/div[1]/div/a");
+    By lblMoreInfo = By.xpath("//*[@id=\"DashboardContent\"]/div[1]/div[1]/div/a");
 
     public By getTxtTitleMainPage() {
         return txtTitleMainPage;

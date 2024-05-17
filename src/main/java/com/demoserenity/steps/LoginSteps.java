@@ -2,7 +2,7 @@ package com.demoserenity.steps;
 
 import com.demoserenity.pageObject.LoginPage;
 import com.demoserenity.utils.Excel;
-import net.thucydides.core.annotations.Step;
+import net.serenitybdd.annotations.Step;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
@@ -31,6 +31,5 @@ public class LoginSteps {
     public void clickBtnSignIn() {
         loginPage.getDriver().findElement(loginPage.getBtnLogin()).click();
     }
-
 
 }

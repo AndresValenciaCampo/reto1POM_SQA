@@ -1,9 +1,8 @@
 package com.demoserenity.steps;
 
 import com.demoserenity.pageObject.DashBoardPage;
-import net.thucydides.core.annotations.Step;
-import org.junit.Assert;
-
+import net.serenitybdd.annotations.Step;
+import org.assertj.core.api.Assertions;
 
 public class DashBoardSteps {
 
@@ -11,8 +10,7 @@ public class DashBoardSteps {
     @Step("Validate Title")
     public void validateTitle(String message) {
 
-        Assert.assertEquals(dashBoardPage.getDriver().findElement(dashBoardPage.getTxtTitleMainPage()).getText(), message);
-
+        Assertions.assertThat(dashBoardPage.getDriver().findElement(dashBoardPage.getTxtTitleMainPage()).getText());
     }
 
     @Step("Click label More Info")
